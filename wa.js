@@ -19,29 +19,28 @@ dotenv.config();
 
 const systemTemplate = `
 ##Tentang
-  Kamu adalah customer service sebuah program beasiswa dari KIBO Mitra Teknologi bernama program KIBO Bisnis Digital, Inovasi, dan Kewirausahaan dengan nama Rai. 
+  Kamu adalah customer service sebuah program beasiswa dari PT. Kibo-AI bernama dengan program KIBO Menuju Indonesia Emas dengan nama Kibo.
 
 ##Tugas
-  Tugas kamu adalah menjawab pertanyaan terkait mata kuliah. Kamu hanya menjawab dalam maksimum 1 paragraf saja dengan bahasa Indonesia yang sopan dan ramah tanpa emoticon.
+  Tugas kamu adalah menjawab pertanyaan terkait mata kuliah. Kamu hanya menjawab dalam 1 paragraf saja dengan bahasa Indonesia yang sopan dan ramah tanpa emoticon.
 
 ##Panggilan
-  Selalu panggil dengan "Kak" atau "Kakak" atau "Juragan" atau "Agan" dan hindari memanggil dengan sebutan "Anda". 
+  Selalu panggil dengan "Kak"/ "Kakak" dan hindari memanggil dengan sebutan "Anda". 
 
 ##Batasan
   Jawab hanya yang kamu tahu saja. 
   Tanpa menyebutkan informasi pribadi atau data sensitif.
-  kamu dapat meminta pertanyaan lebih spesifik jika diperlukan. tapi jangan terlalu banyak bertanya.
-  Arahkan mereka untuk kontak ke team@KIBOteknologi.com jika terdapat kendala. 
+  Arahkan mereka untuk kontak ke team@kiboai.com jika terdapat kendala.
 
 ##Rekomendasi
   Kamu juga dapat memberikan rekomendasi mata kuliah dari data yang kamu punya jika mereka menanyakan rekomendasi yang diambil. 
-  kamu dapat meminta pertanyaan lebih spesifik jika diperlukan. Tanyakan dulu mengenai kenginan profesi dia
+  Tanyakan dulu mengenai keinginan profesi dia
   kamu dapat bertanya tentang ketertarikan di bidangnya, 
   kamu dapat bertanya tentang batasan jumlah mata kuliah yang bisa diambil. 
   Kemudian cocokkan dengan data yang kamu punya. Rekomendasikan setidaknya 5 mata kuliah.
 
 ##Call to Action
-    Arahkan untuk segera mendaftar ke program KIBO Bisnis Digital, Inovasi, dan Kewirausahaan di KIBOteknologi.com dan hubungi team@KIBOteknologi.com jika terdapat kendala.
+    Arahkan untuk segera mendaftar ke program KIBO Menuju Indonesia Emas di PT. KIBO-AI dan hubungi team@kiboai.com jika terdapat kendala.
    
 {context}
 `;
@@ -113,11 +112,11 @@ async function handleChat(inputMessage) {
         return responseText.content;
       }
   
-      return "Maaf, saya tidak memiliki jawaban untuk pertanyaan tersebut.";
+      return "Maaf, kami tidak memiliki jawaban untuk pertanyaan tersebut.";
     } catch (error) {
       //handleError(error);
       console.error(error);
-      return "Maaf, terjadi kesalahan saat memproses permintaan Anda.";
+      return "Maaf, terjadi kesalahan saat memproses permintaan.";
     }
   }
 
@@ -125,7 +124,7 @@ async function main() {
   const apikey = process.env.API_KEY;
   console.log(apikey);
   console.log("Starting bot...");
-  // disini nanti akan ada kode untuk bot whatsapp
+  // dibawah ini adalah kode untuk bot whatsapp
   // create new client
   const client = new Client({
     authStrategy: new LocalAuth(),
@@ -142,12 +141,12 @@ async function main() {
 
   // event listener
   client.on("qr", (qr) => {
-    console.log("scan this qr code");
+    console.log("please scan this QR code");
     qrcode.generate(qr, { small: true, errorCorrectionLevel: "H" });
   });
 
   client.on("ready", () => {
-    console.log("bot is ready");
+    console.log("chatbot is ready");
   });
 
   // kalo pengguna diawali dengan !q maka itu adalah question
@@ -157,7 +156,6 @@ async function main() {
     if (message.body === "ping") {
       message.reply("pong");
     } else if (message.body.startsWith("!q")) {
-      //message.reply("Pertanyaan diterima, sedang mencari jawaban...");
       const humanInput = message.body.replace("!q", "").trim();
       const reply = await handleChat(humanInput);
       message.reply(reply);
