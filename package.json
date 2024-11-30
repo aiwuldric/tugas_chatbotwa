@@ -1,0 +1,26 @@
+{
+  "type": "module",
+  "name": "chatbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "@langchain/core": "^0.3.19",
+    "@langchain/google-genai": "^0.1.4",
+    "@langchain/textsplitters": "^0.1.0",
+    "dotenv": "^16.4.5",
+    "fs": "0.0.1-security",
+    "langchain": "^0.3.6",
+    "nodemon": "^3.1.7",
+    "puppeteer": "^23.9.0",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.26.0"
+  }
+}
